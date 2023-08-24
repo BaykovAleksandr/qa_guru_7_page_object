@@ -2,6 +2,8 @@ import os
 
 from selene import browser, be, have
 
+from utils import files
+
 
 class RegistrationPage:
 
@@ -36,8 +38,7 @@ class RegistrationPage:
         browser.element("[for='hobbies-checkbox-3']").click()
 
     def upload_file(self, path):
-        browser.element('#uploadPicture').send_keys(
-            os.path.abspath(path))
+        browser.element('#uploadPicture').send_keys(files.abs_path_from_project_root(path))
 
     def fill_current_address(self, address):
         browser.element('#currentAddress').type(address)
@@ -54,7 +55,8 @@ class RegistrationPage:
     def assert_title(self, text):
         browser.element('#example-modal-sizes-title-lg').should(have.text(text))
 
-    def assert_body(self, result):
-        browser.element('.table').should(have.text(result))
+    def assert_body(self, *result):
+        browser.element('.table').all('td').even.should(
+            have.exact_texts(result))
 
 
