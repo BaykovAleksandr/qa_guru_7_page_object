@@ -23,7 +23,7 @@ def test_positive(open_browser):
 
     registration_page.choose_hobbies()
 
-    registration_page.upload_file('files/san-diego-night-view-united-states-boats.jpeg')
+    registration_page.upload_file('san-diego-night-view-united-states-boats.jpeg')
 
     registration_page.fill_current_address("Moscow Region")
 
@@ -35,10 +35,17 @@ def test_positive(open_browser):
 
     registration_page.assert_title('Thanks for submitting the form')
 
-    registration_page.assert_body('Aleksandr Baykov' and 'test@yandex.com' and 'Male' and
-                                                   '1234567890' and '19 December,1988' and 'Maths' and 'Music' and
-                                                   'san-diego-night-view-united-states-boats.jpeg' and
-                                                   'Moscow Region' and 'NCR Delhi')
+    registration_page.assert_body(
+        'Aleksandr Baykov',
+        'test@yandex.com',
+        'Male',
+        '1234567890',
+        '19 December,1988',
+        'Maths',
+        'Music',
+        'san-diego-night-view-united-states-boats.jpeg',
+        'Moscow Region',
+        'NCR Delhi')
 
 
 
